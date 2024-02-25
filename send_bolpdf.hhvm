@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>SKYNET</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<?php
+
+$dbConfig = array(
+    'hostname' => "localhost",
+    'username' => "root",
+    'password' => "vertrigo",
+    'database' => "mkradius"
+);
+$conn = new mysqli($dbConfig['hostname'], $dbConfig['username'], $dbConfig['password'], $dbConfig['database']) or die("Could not connect database");
+if ($conn->connect_errno) {
+    printf("Connect failed: %s\n", $db->connect_error);
+    exit();
+}
+if (!$conn->set_charset("utf8mb4")) {
+    printf("Error loading character set utf8mb4: %s\n", $mysqli->error);
+    exit();
+}
+if($_GET['uuid']){
+    $result = mysqli_query($conn, "SELECT * FROM vtab_titulos WHERE uuid_lanc = '".$_GET['uuid']."'");
+    while($rows = mysqli_fetch_assoc($result)){
+        $resultpix = mysqli_query($conn, "SELECT * FROM sis_qrpix WHERE titulo = '".$_GET['uuid']."'");
+            while($rowspix = mysqli_fetch_assoc($resultpix)){
+            $login = $rows['login'];
+            $datavenc = $rows['datavenc'];
+            $linha_digitavel = $rows['linhadig'];
+            $valor = $rows['valor'];
+            $datavenc = $rows['datavenc'];
+            $cpfcnpj = $rows['cpf_cnpj'];
+            $login = $rows['login'];
+            $titulo_cod = $rows['titulo'];
+            $copiacola = $rowspix['qrcode'];
+            $url = "http://45.70.210.10/ura/cliente.php?cpf_cnpj=$cpfcnpj";
+            $res = json_decode(file_get_contents($url));
+
+            $whatsapp = "55".$rows['celular'];
+            $login = $rows['login'];
+            $dia = substr($datavenc, -11, 2);
+            $mes = substr($datavenc, 5, 2);
+            $ano = substr($datavenc, 0, 4);
+            $data_venc = $dia.'/'.$mes.'/'.$ano;
+
+            $msg = "*Cliente:* ".$res->nome.'%0A*Contrato:* '.$res->contrato.'%0A*Plano:* '.$res->plano.'%0A*Bloqueado(?):* '.$res->bloqueado.'%0A%0A📅 *Vencimento:* '.$data_venc.'%0A💰 *Valor:* R$ '.$valor.'%0A%0A_INFORMAÇÕES PARA PAGAMENTO_%0A%0A 💢 👇🏾 👇🏾 👇🏾 👇🏾 👇🏾 💢 %0A{split}📲 *Linha Digitavel:*{split}'.$linha_digitavel.'{split}💠 *Pix Copia/Cola:*{split}'.$copiacola.'{split}Para visualizar o boleto click no link abaixo:{split}https://skynetfibra.net.br/boleto/boleto.hhvm?titulo='.$titulo_cod;
+            $texto = str_replace( ' ','%20', $msg );
+        $envia = "http://meujames.com/api/playsms/index.php?app=webservices&u=skynettelecomunicacao@gmail.com&p=7c390df17b262860f004cc2e98ac1aa41c0becf6&h=7c390df17b262860f004cc2e98ac1aa41c0becf6&ta=pv&op=pv&to='$whatsapp'&msg=$texto%26contrato=$login";
+        $send = json_decode(file_get_contents($envia));
+        echo('OK');
+            }
+        }
+    }
+else{
+    echo json_encode(('Error'));
+}
+
+
