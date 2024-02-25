@@ -14,8 +14,8 @@ backend_extract_ura() {
   printf "\n\n"
   sleep 2
   
-  unzip /root/MKAUTH-URA-Script/arquivos.zip
-  rm -R /root/MKAUTH-URA-Script/arquivos.zip
+  unzip /root/MK-Auth/arquivos.zip
+  rm -R /root/MK-Auth/arquivos.zip
   sleep 2
 
 }
@@ -32,7 +32,7 @@ backend_copy_ura() {
 
   sleep 2
   
-  mv /root/MKAUTH-URA-Script/ura /var/www
+  mv /root/MK-Auth/ura /var/www
   sleep 2
 }
 
@@ -48,6 +48,6 @@ backend_copy_send_bol_pdf() {
 
   sleep 2
   
-  mv /root/MKAUTH-URA-Script/send_bolpdf.hhvm /opt/mk-auth/admin/
+  mv /root/MK-Auth/send_bolpdf.hhvm /opt/mk-auth/admin/
   sleep 2
 }
