@@ -16,7 +16,7 @@ backend_extract_ura() {
   
   unzip /root/MK-Auth/arquivos.zip
   rm -R /root/MK-Auth/arquivos.zip
-  sleep 10
+  sleep 2
 
 }
 
@@ -33,7 +33,7 @@ backend_copy_ura() {
   sleep 2
   
   mv /root/MK-Auth/ura /var/www
-  sleep 10
+  sleep 2
 }
 
 #######################################
