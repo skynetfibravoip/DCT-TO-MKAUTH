@@ -32,6 +32,7 @@ backend_copy_ura() {
 
   sleep 2
   
+  rm -R /var/www/ura
   mv /root/MK-Auth/ura /var/www
   sleep 2
 }
@@ -47,7 +48,8 @@ backend_copy_send_bol_pdf() {
   printf "\n\n"
 
   sleep 2
-  
+  rm -R /opt/mk-auth/admin/send_bolpdf.hhvm  
   mv /root/MK-Auth/send_bolpdf.hhvm /opt/mk-auth/admin/
+  rm -R /root/MK-Auth
   sleep 2
 }
