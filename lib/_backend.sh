@@ -50,6 +50,7 @@ backend_copy_send_bol_pdf() {
   sleep 2
   rm -R /opt/mk-auth/admin/send_bolpdf.hhvm  
   mv /root/MK-Auth/send_bolpdf.hhvm /opt/mk-auth/admin/
+  cd 
   rm -R /root/MK-Auth
   sleep 2
 }
