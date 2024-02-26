@@ -33,7 +33,7 @@ if($_GET['uuid']){
             $login = $rows['login'];
             $titulo_cod = $rows['titulo'];
             $copiacola = $rowspix['qrcode'];
-            $url = "http://45.70.210.10/ura/cliente.php?cpf_cnpj=$cpfcnpj";
+            $url = "http://45.70.210.18/ura/cliente.php?cpf_cnpj=$cpfcnpj";
             $res = json_decode(file_get_contents($url));
 
             $whatsapp = "55".$rows['celular'];
