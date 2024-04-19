@@ -7,3 +7,4 @@ sudo apt-get install -y git && git clone https://github.com/skynetfibragithub/MK
 ./install
 ```
 
+Testado: 18-04-2024 as 23:20 PM. By: DCT SISTEMAS 
