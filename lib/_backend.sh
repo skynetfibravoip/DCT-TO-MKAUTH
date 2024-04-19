@@ -44,11 +44,13 @@ backend_copy_ura() {
 #######################################
 backend_copy_send_bol_pdf() {
   print_banner
-  printf "${WHITE} 💻 Enviando o arquivo de envio (send_bolpdf.hhvm)..."
+  printf "${WHITE} 💻 Enviando o arquivo de envio (send_bolpdf.hhvm & sms.class)..."
   printf "\n\n"
 
   sleep 2
-  rm -R /opt/mk-auth/admin/send_bolpdf.hhvm  
+  rm -R /opt/mk-auth/admin/send_bolpdf.hhvm
+  rm -R /opt/mk-auth/libs/sms.class
+  mv /root/MK-Auth/sms.class /opt/mk-auth/libs/
   mv /root/MK-Auth/send_bolpdf.hhvm /opt/mk-auth/admin/
   cd 
   rm -R /root/MK-Auth
