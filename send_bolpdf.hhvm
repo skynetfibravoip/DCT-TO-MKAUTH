@@ -33,7 +33,7 @@ if($_GET['uuid']){
             $login = $rows['login'];
             $titulo_cod = $rows['titulo'];
             $copiacola = $rowspix['qrcode'];
-            $url = "http://45.70.210.18/ura/cliente.php?cpf_cnpj=$cpfcnpj";
+            $url = "http://100.64.0.126/ura/cliente.php?cpf_cnpj=$cpfcnpj";
             $res = json_decode(file_get_contents($url));
 
             $whatsapp = "55".$rows['celular'];
@@ -43,11 +43,49 @@ if($_GET['uuid']){
             $ano = substr($datavenc, 0, 4);
             $data_venc = $dia.'/'.$mes.'/'.$ano;
 
-            $msg = "*Cliente:* ".$res->nome.'%0A*Contrato:* '.$res->contrato.'%0A*Plano:* '.$res->plano.'%0A*Bloqueado(?):* '.$res->bloqueado.'%0A%0A📅 *Vencimento:* '.$data_venc.'%0A💰 *Valor:* R$ '.$valor.'%0A%0A_INFORMAÇÕES PARA PAGAMENTO_%0A%0A 💢 👇🏾 👇🏾 👇🏾 👇🏾 👇🏾 💢 %0A{split}📲 *Linha Digitavel:*{split}'.$linha_digitavel.'{split}💠 *Pix Copia/Cola:*{split}'.$copiacola.'{split}Para visualizar o boleto click no link abaixo:{split}https://skynetfibra.net.br/boleto/boleto.hhvm?titulo='.$titulo_cod;
-            $texto = str_replace( ' ','%20', $msg );
-        $envia = "http://meujames.com/api/playsms/index.php?app=webservices&u=skynettelecomunicacao@gmail.com&p=7c390df17b262860f004cc2e98ac1aa41c0becf6&h=7c390df17b262860f004cc2e98ac1aa41c0becf6&ta=pv&op=pv&to='$whatsapp'&msg=$texto%26contrato=$login";
-        $send = json_decode(file_get_contents($envia));
-        echo('OK');
+// Monta a mensagem a ser enviada
+$msg = "*Cliente:* " . $res->nome . '%0A*Contrato:* ' . $res->contrato . '%0A*Plano:* ' . $res->plano . '%0A*Bloqueado(?):* ' . $res->bloqueado . '%0A%0A📅 *Vencimento:* ' . $data_venc . '%0A💰 *Valor:* R$ ' . $valor . '%0A%0A_INFORMAÇÕES PARA PAGAMENTO_%0A%0A 💢 👇🏾 👇🏾 👇🏾 👇🏾 👇🏾 💢 %0A{split}📲 *Linha Digitavel:*{split}' . $linha_digitavel . '{split}💠 *Pix Copia/Cola:*{split}' . $copiacola . '{split}Para visualizar o boleto click no link abaixo:{split}https://skynetfibra.net.br/boleto/boleto.hhvm?titulo=' . $titulo_cod . '&contrato=' .$login;
+$texto = str_replace('%20', ' ', $msg);
+$texto = str_replace('%0A', '\n', $msg);
+
+// Configura a URL do endpoint
+$url = "https://financeiro.skynetfibra.net.br/sms/index.php";
+
+// Configura os dados a serem enviados via POST
+$data = array(
+    'app' => 'webservices',
+    'u' => 'skynettelecomunicacao@gmail.com',
+    'p' => '22f9292e-bce1-4de1-82f9-c447ee0cac20',
+    'h' => '22f9292e-bce1-4de1-82f9-c447ee0cac20',
+    'ta' => 'pv',
+    'op' => 'pv',
+    'to' => $whatsapp,
+    'msg' => $texto,
+    'contrato' => $login,
+);
+
+// Inicializa a sessão cURL
+$ch = curl_init($url);
+
+// Configura as opções de cURL
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+
+// Executa a requisição e captura a resposta
+$response = curl_exec($ch);
+
+// Verifica se houve erro na requisição
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+
+// Fecha a sessão cURL
+curl_close($ch);
+
+// Exibe a resposta do servidor
+echo $response;
+
             }
         }
     }
