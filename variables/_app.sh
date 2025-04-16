@@ -1,7 +1,6 @@
 #!/bin/bash
 #
 # Variables to be used for background styling.
-
 # app variables
 
 jwt_secret=$(openssl rand -base64 32)
