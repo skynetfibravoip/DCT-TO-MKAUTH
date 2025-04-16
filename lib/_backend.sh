@@ -37,11 +37,11 @@ backend_copy_ura() {
   rm -R /var/www/dsh
   rm -R /var/www/pix
   rm -R /var/www/gplanos
-  mv /root/MK-Auth/ura /var/www
-  mv /root/MK-Auth/gps /var/www
-  mv /root/MK-Auth/dsh /var/www
-  mv /root/MK-Auth/pix /var/www
-  mv /root/MK-Auth/gplanos /var/www
+  mv /root/DCT-TO-MKAUTK/ura /var/www
+  mv /root/DCT-TO-MKAUTK/gps /var/www
+  mv /root/DCT-TO-MKAUTK/dsh /var/www
+  mv /root/DCT-TO-MKAUTK/pix /var/www
+  mv /root/DCT-TO-MKAUTK/gplanos /var/www
   mysql -u root -pvertrigo -e "CREATE DATABASE IF NOT EXISTS gps;"
   mysql -u root -pvertrigo gps < /var/www/gps/base.sql
   sleep 2
@@ -60,8 +60,8 @@ backend_copy_send_bol_pdf() {
   sleep 2
   rm -R /opt/mk-auth/admin/send_bolpdf.hhvm
   rm -R /opt/mk-auth/libs/sms.class
-  mv /root/MK-Auth/sms.class /opt/mk-auth/libs/
-  mv /root/MK-Auth/send_bolpdf.hhvm /opt/mk-auth/admin/
+  mv /root/DCT-TO-MKAUTK/sms.class /opt/mk-auth/libs/
+  mv /root/DCT-TO-MKAUTK/send_bolpdf.hhvm /opt/mk-auth/admin/
   cd 
   rm -R /root/MK-Auth
   sleep 2
