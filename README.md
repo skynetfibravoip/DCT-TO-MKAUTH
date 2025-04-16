@@ -3,8 +3,7 @@ Este código tem como objetivo aprimorar a usabilidade do sistema MKAUTH, além 
 ```bash
 sudo apt-get update
 
-sudo apt-get install -y git && git clone https://github.com/dctsistemas/MK-Auth.git && sudo chmod -R 777 MK-Auth && cd MK-Auth && sudo ./install
-./install
+sudo apt-get install -y git && git clone https://github.com/dctsistemas/DCT-TO-MKAUTK.git && sudo chmod -R 777 DCT-TO-MKAUTK && cd DCT-TO-MKAUTK && sudo ./install
 ```
 
 Testado: 16-04-2025 as 16:17 PM. By: DCT SISTEMAS 
