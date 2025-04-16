@@ -14,8 +14,8 @@ backend_extract_ura() {
   printf "\n\n"
   sleep 2
   
-  tar -xzvf /root/MK-Auth/arquivos.tar.gz
-  rm -R /root/MK-Auth/arquivos.tar.gz
+  tar -xzvf /root/MK-Auth/arquivos.tgz
+  rm -R /root/MK-Auth/arquivos.tgz
   sleep 2
 
 }
