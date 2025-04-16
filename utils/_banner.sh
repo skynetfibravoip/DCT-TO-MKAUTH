@@ -1,7 +1,6 @@
 #!/bin/bash
 #
 # Print banner art.
-
 #######################################
 # Print a board. 
 # Globals:
