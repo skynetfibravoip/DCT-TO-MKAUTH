@@ -14,8 +14,8 @@ backend_extract_ura() {
   printf "\n\n"
   sleep 2
   
-  tar -xzvf /root/MK-Auth/arquivos.tgz
-  rm -R /root/MK-Auth/arquivos.tgz
+  tar -xzvf /root/DCT-TO-MKAUTH/arquivos.tgz
+  rm -R /root/DCT-TO-MKAUTH/arquivos.tgz
   sleep 2
 
 }
@@ -37,11 +37,11 @@ backend_copy_ura() {
   rm -R /var/www/dsh
   rm -R /var/www/pix
   rm -R /var/www/gplanos
-  mv /root/DCT-TO-MKAUTK/ura /var/www
-  mv /root/DCT-TO-MKAUTK/gps /var/www
-  mv /root/DCT-TO-MKAUTK/dsh /var/www
-  mv /root/DCT-TO-MKAUTK/pix /var/www
-  mv /root/DCT-TO-MKAUTK/gplanos /var/www
+  mv /root/DCT-TO-MKAUTH/ura /var/www
+  mv /root/DCT-TO-MKAUTH/gps /var/www
+  mv /root/DCT-TO-MKAUTH/dsh /var/www
+  mv /root/DCT-TO-MKAUTH/pix /var/www
+  mv /root/DCT-TO-MKAUTH/gplanos /var/www
   mysql -u root -pvertrigo -e "CREATE DATABASE IF NOT EXISTS gps;"
   mysql -u root -pvertrigo gps < /var/www/gps/base.sql
   sleep 2
@@ -60,8 +60,8 @@ backend_copy_send_bol_pdf() {
   sleep 2
   rm -R /opt/mk-auth/admin/send_bolpdf.hhvm
   rm -R /opt/mk-auth/libs/sms.class
-  mv /root/DCT-TO-MKAUTK/sms.class /opt/mk-auth/libs/
-  mv /root/DCT-TO-MKAUTK/send_bolpdf.hhvm /opt/mk-auth/admin/
+  mv /root/DCT-TO-MKAUTH/sms.class /opt/mk-auth/libs/
+  mv /root/DCT-TO-MKAUTH/send_bolpdf.hhvm /opt/mk-auth/admin/
   cd 
   rm -R /root/MK-Auth
   sleep 2
