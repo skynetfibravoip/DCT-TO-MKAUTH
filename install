@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # reset shell colors
 tput init
 
