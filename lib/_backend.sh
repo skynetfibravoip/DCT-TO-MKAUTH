@@ -10,12 +10,12 @@
 #######################################
 backend_extract_ura() {
   print_banner
-  printf "${WHITE} 💻 Extraindo os arquivos da URA..."
+  printf "${WHITE} 💻 Extraindo os arquivos"
   printf "\n\n"
   sleep 2
   
-  unzip /root/MK-Auth/arquivos.zip
-  rm -R /root/MK-Auth/arquivos.zip
+  tar -xzvf /root/MK-Auth/arquivos.tar.gz
+  rm -R /root/MK-Auth/arquivos.tar.gz
   sleep 2
 
 }
@@ -27,13 +27,23 @@ backend_extract_ura() {
 #######################################
 backend_copy_ura() {
   print_banner
-  printf "${WHITE} 💻 Descompactando os arquivos da URA..."
+  printf "${WHITE} 💻 Descompactando os arquivos"
   printf "\n\n"
 
   sleep 2
   
   rm -R /var/www/ura
+  rm -R /var/www/gps
+  rm -R /var/www/dsh
+  rm -R /var/www/pix
+  rm -R /var/www/gplanos
   mv /root/MK-Auth/ura /var/www
+  mv /root/MK-Auth/gps /var/www
+  mv /root/MK-Auth/dsh /var/www
+  mv /root/MK-Auth/pix /var/www
+  mv /root/MK-Auth/gplanos /var/www
+  mysql -u root -pvertrigo -e "CREATE DATABASE IF NOT EXISTS gps;"
+  mysql -u root -pvertrigo gps < /var/www/gps/base.sql
   sleep 2
 }
 
