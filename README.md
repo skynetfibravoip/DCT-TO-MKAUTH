@@ -3,7 +3,7 @@ Este código tem como objetivo aprimorar a usabilidade do sistema MKAUTH, além 
 ```bash
 sudo apt-get update
 
-sudo apt-get install -y git && git clone https://github.com/dctsistemas/DCT-TO-MKAUTH.git && sudo chmod -R 777 DCT-TO-MKAUTH && cd DCT-TO-MKAUTH
+sudo apt-get install -y git && git clone https://github.com/skynetfibravoip/DCT-TO-MKAUTH.git && sudo chmod -R 777 DCT-TO-MKAUTH && cd DCT-TO-MKAUTH
 sudo ./install
 
 ```
